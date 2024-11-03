@@ -1,0 +1,29 @@
+/*
+ * DRV8301.c
+ *
+ *  Created on: Oct 31, 2024
+ *      Author: MARIO
+ */
+
+#include "DRV8301.h"
+
+void DRV8301_Write(drv8301_t *DRV,uint16_t address, uint16_t data)
+{
+	uint16_t Tx_Data = ((address & 0x7F) << 11) | (data & 0x07FF);  // Address and data combined (write command)
+	/*	the PREVIOUS line means inside THE txdata is 16 bit which  will be divide into 1 r/w (15 bit)
+	 * then 4 bits for the addresse and the the the least 11 bit used for data  the  (&with hex) is used
+	 * for bit masking*/
+
+	//Select DRV8301 (NSS low)
+	//HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);//to start SPI TRANSMIT
+	DRV->Agonistic_HardwareInterface_t.GPIO_RESET_AG(4,0);
+
+	// Transmit the data
+	DRV->Agonistic_HardwareInterface_t.SPI_AG_Transmit( (uint8_t*)&Tx_Data, 1, TimeOut );
+	//HAL_SPI_Transmit(&hspi1, (uint8_t *)&txData, 1, HAL_MAX_DELAY);
+
+	//Deselect DRV8301 (NSS high)
+	//	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);//to STOP SPI TRANSMIT
+	DRV->Agonistic_HardwareInterface_t.GPIO_SET_AG(4,1);
+}
+

@@ -1,0 +1,32 @@
+/*
+ * Hardware_Interface.c
+ *
+ *  Created on: Oct 31, 2024
+ *      Author: MARIO
+ */
+
+#include "Hardware_Interface.h"
+/* Private variables ---------------------------------------------------------*/
+
+
+
+
+SPI_AGHW_StatusTypeDef SPI_AGHW_Transmit(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout)
+{
+	SPI_AGHW_StatusTypeDef OK = HAL_SPI_Transmit (&hspi1, (uint8_t*)&pData,1,HAL_MAX_DELAY );
+
+	return (OK==SPI_OK) ? 1 : 0 ;
+}
+SPI_AGHW_StatusTypeDef SPI_AGHW_Receive(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout)
+{
+	SPI_AGHW_StatusTypeDef OK = HAL_SPI_Receive (&hspi1, (uint8_t*)&pData,Size,Timeout );
+
+	return (OK==SPI_OK) ? 1 : 0 ;
+}
+SPI_AGHW_StatusTypeDef SPI_AGHW_TransmitReceive(SPI_HandleTypeDef *hspi, uint8_t *pTxData, uint8_t *pRxData, uint16_t Size,
+		uint32_t Timeout)
+{
+	SPI_AGHW_StatusTypeDef OK = HAL_SPI_TransmitReceive (&hspi1, (uint8_t *)&pTxData, (uint8_t *)&pRxData, Size, Timeout);
+
+	return (OK==SPI_OK) ? 1 : 0 ;
+}

@@ -1,0 +1,43 @@
+/*
+ * Hardware_Interface.c
+ *
+ *  Created on: Oct 31, 2024
+ *      Author: MARIO
+ */
+
+#include "hardware_interface.h"
+extern SPI_HandleTypeDef hspi1;
+extern GPIO_InitTypeDef GPIO_InitStruct;
+
+
+/* Function to Transmit data over SPI */
+SPI_AGHW_StatusTypeDef SPI_AGHW_Transmit(uint16_t *pData, uint16_t Size, uint32_t Timeout) {
+    if (HAL_SPI_Transmit(&hspi1, (uint8_t *)pData, Size, Timeout) == HAL_OK) {
+        return SPI_OK;
+    } else {
+        return SPI_ERROR;
+    }
+}
+
+/* Function to Receive data over SPI */
+SPI_AGHW_StatusTypeDef SPI_AGHW_Receive( uint16_t *pData, uint16_t Size, uint32_t Timeout) {
+    if (HAL_SPI_Receive(&hspi1, (uint8_t *)pData, Size, Timeout) == HAL_OK) {
+        return SPI_OK;
+    } else {
+        return SPI_ERROR;
+    }
+}
+
+/* Function to Transmit and Receive data over SPI */
+SPI_AGHW_StatusTypeDef SPI_AGHW_TransmitReceive( uint16_t *pTxData, uint16_t *pRxData, uint16_t Size, uint32_t Timeout) {
+    if( (HAL_SPI_TransmitReceive(&hspi1, (uint8_t *)&txData, (uint8_t *)&rxData, 1, HAL_MAX_DELAY); == HAL_OK) {
+        return SPI_OK;
+    } else {
+        return SPI_ERROR;
+    }
+}
+
+/* Function to Write to a GPIO Pin */
+void GPIO_AGHW_WritePin(uint16_t GPIO_Pin, GPIO_PinState PinState) {
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
+}

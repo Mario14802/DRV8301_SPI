@@ -1,0 +1,5 @@
+Hardware_Interface.c:14:6:SPI_AGHW_Transmit	24	static
+Hardware_Interface.c:20:10:SPI_AGHW_Receive	24	static
+Hardware_Interface.c:26:10:SPI_AGHW_TransmitReceive	32	static
+Hardware_Interface.c:33:6:GPIO_AGHW_ResetPin	16	static
+Hardware_Interface.c:36:6:GPIO_AGHW_SetPin	16	static

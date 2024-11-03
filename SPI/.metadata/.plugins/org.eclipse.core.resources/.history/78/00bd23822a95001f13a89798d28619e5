@@ -1,0 +1,132 @@
+/* USER CODE BEGIN Header */
+/**
+  *******************************************************************************
+  * @file           : main.c
+  * @brief          : Main program body
+  *******************************************************************************
+  */
+/* USER CODE END Header */
+
+/* Includes ------------------------------------------------------------------*/
+#include "main.h"
+
+/* Private variables ---------------------------------------------------------*/
+SPI_HandleTypeDef hspi1;
+
+/* Private function prototypes -----------------------------------------------*/
+void SystemClock_Config(void);
+static void MX_GPIO_Init(void);
+static void MX_SPI1_Init(void);
+
+/**
+  * @brief  The application entry point.
+  * @retval int
+  */
+int main(void)
+{
+  /* MCU Configuration--------------------------------------------------------*/
+
+  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+  HAL_Init();
+
+  /* Configure the system clock */
+  SystemClock_Config();
+
+  /* Initialize all configured peripherals */
+  MX_GPIO_Init();
+  MX_SPI1_Init();
+
+  /* USER CODE BEGIN 2 */
+  uint8_t txData[] = "MARIO";  // Data to be sent over SPI
+  uint8_t rxData[6];           // Buffer to receive the SPI data
+  uint16_t Size = sizeof(txData);   // Size of the data to transmit
+  uint32_t Timeout = 100;           // Timeout of 100ms for SPI communication
+
+  /* Infinite loop */
+  while (1)
+  {
+    // Transmit the data over SPI
+    HAL_StatusTypeDef transmitStatus = HAL_SPI_Transmit(&hspi1, txData, Size, Timeout);
+    if (transmitStatus == HAL_OK)
+    {
+        // Data transmitted successfully
+    }
+    else
+    {
+        // Handle transmit error
+        Error_Handler();
+    }
+
+    // Receive the data over SPI
+    HAL_StatusTypeDef receiveStatus = HAL_SPI_Receive(&hspi1, rxData, Size, Timeout);
+    if (receiveStatus == HAL_OK)
+    {
+        // Data received successfully, process rxData
+    }
+    else
+    {
+        // Handle receive error
+        Error_Handler();
+    }
+
+    HAL_Delay(1000); // Wait for 1 second before next communication
+  }
+}
+
+/**
+  * @brief SPI1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_SPI1_Init(void)
+{
+  /* SPI1 parameter configuration */
+  hspi1.Instance = SPI1;
+  hspi1.Init.Mode = SPI_MODE_MASTER;
+  hspi1.Init.Direction = SPI_DIRECTION_2LINES;
+  hspi1.Init.DataSize = SPI_DATASIZE_8BIT;
+  hspi1.Init.CLKPolarity = SPI_POLARITY_HIGH;
+  hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
+  hspi1.Init.NSS = SPI_NSS_SOFT;
+  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_16;
+  hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
+  hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
+  hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
+
+  if (HAL_SPI_Init(&hspi1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+}
+
+/**
+  * @brief GPIO Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_GPIO_Init(void)
+{
+  __HAL_RCC_GPIOA_CLK_ENABLE();
+  // Configure the SPI pins (SCK, MISO, MOSI, NSS) here
+}
+
+/**
+  * @brief  This function is executed in case of error occurrence.
+  * @retval None
+  */
+void Error_Handler(void)
+{
+  while (1)
+  {
+    // Stay in this loop in case of error
+  }
+}
+
+/**
+  * @brief System Clock Configuration
+  * @retval None
+  */
+void SystemClock_Config(void)
+{
+  // System clock configuration code here
+}

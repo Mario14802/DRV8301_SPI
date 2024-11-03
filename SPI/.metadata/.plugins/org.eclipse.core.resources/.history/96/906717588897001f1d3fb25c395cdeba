@@ -1,0 +1,26 @@
+/*
+ * Hardware_Interface.h
+ *
+ *  Created on: Oct 31, 2024
+ *      Author: MARIO
+ */
+
+#ifndef HARDWARE_INTERFACE_HARDWARE_INTERFACE_H_
+#define HARDWARE_INTERFACE_HARDWARE_INTERFACE_H_
+
+#include "stm32f1xx_hal.h"
+
+typedef enum
+{
+  SPI_OK       = 0x00U,
+  SPI_ERROR    = 0x01U,
+  SPI_BUSY     = 0x02U,
+  SPI_TIMEOUT  = 0x03U
+} SPI_AGHW_StatusTypeDef;
+
+SPI_AGHW_StatusTypeDef SPI_AGHW_Transmit(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+SPI_AGHW_StatusTypeDef SPI_AGHW_Receive(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+SPI_AGHW_StatusTypeDef SPI_AGHW_TransmitReceive(SPI_HandleTypeDef *hspi, uint8_t *pTxData, uint8_t *pRxData, uint16_t Size,
+        uint32_t Timeout);
+
+#endif /* HARDWARE_INTERFACE_HARDWARE_INTERFACE_H_ */

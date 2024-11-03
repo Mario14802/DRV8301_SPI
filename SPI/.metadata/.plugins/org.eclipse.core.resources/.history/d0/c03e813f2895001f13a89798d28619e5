@@ -1,0 +1,72 @@
+
+
+SPI_HandleTypeDef hspi1;
+
+void SystemClock_Config(void);
+static void MX_GPIO_Init(void);
+static void MX_SPI1_Init(void);
+
+int main(void)
+{
+    // Initialize the HAL Library
+    HAL_Init();
+
+    // Configure the system clock
+    SystemClock_Config();
+
+    // Initialize all configured peripherals (SPI, GPIO)
+    MX_GPIO_Init();
+    MX_SPI1_Init();
+
+    uint8_t txData = 0xAA;   // Data to send
+    uint8_t rxData = 0x00;   // Data to receive
+    uint16_t size = 1;       // Size of data
+
+    // Infinite loop for continuous SPI communication
+    while (1)
+    {
+        // Full-duplex communication using SPI in blocking mode
+        HAL_StatusTypeDef status = HAL_SPI_TransmitReceive(&hspi1, &txData, &rxData, size, 100);
+
+        if (status == HAL_OK) {
+            // Data was sent and received successfully
+            // Process the received data (rxData)
+        } else {
+            // Handle error (e.g., timeout or transmission error)
+        }
+
+        // Optionally, you can introduce a delay to control the SPI communication rate
+        HAL_Delay(100);  // Delay 100 ms (adjust as necessary)
+    }
+}
+
+// SPI1 Initialization Function
+static void MX_SPI1_Init(void)
+{
+    hspi1.Instance = SPI1;
+    hspi1.Init.Mode = SPI_MODE_MASTER;          // Master mode
+    hspi1.Init.Direction = SPI_DIRECTION_2LINES;  // Full-duplex
+    hspi1.Init.DataSize = SPI_DATASIZE_8BIT;    // 8-bit data
+    hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;  // Clock polarity
+    hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;      // Clock phase
+    hspi1.Init.NSS = SPI_NSS_SOFT;              // Software NSS
+    hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_16; // Adjust prescaler based on your needs
+    hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;     // MSB transmitted first
+    hspi1.Init.TIMode = SPI_TIMODE_DISABLE;     // Disable TI mode
+    hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;  // Disable CRC calculation
+
+    if (HAL_SPI_Init(&hspi1) != HAL_OK) {
+        // Initialization error
+    }
+}
+
+static void MX_GPIO_Init(void)
+{
+    __HAL_RCC_GPIOA_CLK_ENABLE();  // Enable GPIOA clock (adjust as needed)
+    // GPIO initialization here for SPI pins (e.g., PA5 = SCK, PA6 = MISO, PA7 = MOSI)
+}
+
+void SystemClock_Config(void)
+{
+    // System clock configuration (adjust to your application needs)
+}

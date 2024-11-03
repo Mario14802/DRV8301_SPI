@@ -1,0 +1,21 @@
+/*
+ * Hardware_Interface.h
+ *
+ *  Created on: Oct 31, 2024
+ *      Author: MARIO
+ */
+
+#ifndef HARDWARE_INTERFACE_HARDWARE_INTERFACE_H_
+#define HARDWARE_INTERFACE_HARDWARE_INTERFACE_H_
+
+#include "stm32f1xx_hal.h"
+
+void HAL_GPIO_WritePin(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin, GPIO_PinState PinState);
+HAL_StatusTypeDef HAL_SPI_Transmit(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+HAL_StatusTypeDef HAL_SPI_Receive(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+HAL_StatusTypeDef HAL_SPI_TransmitReceive(SPI_HandleTypeDef *hspi, uint8_t *pTxData, uint8_t *pRxData, uint16_t Size,
+                                          uint32_t Timeout);
+
+
+
+#endif /* HARDWARE_INTERFACE_HARDWARE_INTERFACE_H_ */

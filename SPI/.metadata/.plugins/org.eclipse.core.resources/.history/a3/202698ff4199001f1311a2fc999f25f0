@@ -1,0 +1,38 @@
+/*
+ * DRV8301.h
+ *
+ *  Created on: Oct 31, 2024
+ *      Author: MARIO
+ */
+
+#ifndef DEVICE_DRIVERS_DRV8301_DRV8301_H_
+#define DEVICE_DRIVERS_DRV8301_DRV8301_H_
+
+#include <stdint.h>
+#define HAL_MAX_DELAY      0xFFFFFFFFU
+
+typedef struct  {
+
+	uint16_t readData ;
+	uint16_t writeData;  // Example data to write
+	uint16_t address;      // Example register address (check DRV8301 datasheet for valid addresses)
+
+	struct
+	{
+		uint16_t (*SPI_AG_Transmit)(uint8_t *pData, uint16_t Size, uint32_t Timeout);
+
+		uint16_t (*SPI_AG_TransmitReceive)(uint8_t *pTxData, uint16_t *pRxData, uint16_t Size, uint32_t Timeout);
+
+		uint16_t(*SPI_AG_Recieve)(uint8_t *pData, uint16_t Size, uint32_t Timeout);
+
+		uint8_t (*GPIO_AG)(uint16_t GPIO_Pin, uint8_t PinState);
+
+	}Agonistic_HardwareInterface_t;
+
+
+}drv8301_t;
+
+void DRV8301_Write(drv8301_t *DRV,uint16_t address, uint16_t data);
+
+
+#endif /* DEVICE_DRIVERS_DRV8301_DRV8301_H_ */

@@ -1,0 +1,15 @@
+/*
+ * DRV8301.c
+ *
+ *  Created on: Oct 31, 2024
+ *      Author: MARIO
+ */
+
+#include "DRV8301.h"
+
+
+
+drv8301_t DRV;
+
+
+

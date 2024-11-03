@@ -1,0 +1,49 @@
+/*
+ * DRV8301.c
+ *
+ *  Created on: Oct 31, 2024
+ *      Author: MARIO
+ */
+
+#include "DRV8301.h"
+
+void DRV8301_Write(drv8301_t *DRV, uint16_t address, uint16_t data)
+{
+    uint16_t Tx_Data = ((address & 0x7F) << 11) | (data & 0x07FF);  // 16-bit address and data combined (write command)
+
+    // Split 16-bit data into two 8-bit parts
+    uint8_t Tx_Data_8bit[2];
+    Tx_Data_8bit[0] = (uint8_t)((Tx_Data >> 8) & 0xFF); // Higher 8 bits
+    Tx_Data_8bit[1] = (uint8_t)(Tx_Data & 0xFF);        // Lower 8 bits
+
+    // Select DRV8301 (NSS low)
+    DRV->Agonistic_HardwareInterface_t.GPIO_RESET_AG(4, 0);
+
+    // Transmit the 8-bit array
+    DRV->Agonistic_HardwareInterface_t.SPI_AG_Transmit(Tx_Data_8bit, 2, TimeOut);
+
+    // Deselect DRV8301 (NSS high)
+    DRV->Agonistic_HardwareInterface_t.GPIO_SET_AG(4, 1);
+}
+
+
+uint16_t  DRV8301_Read(drv8301_t *DRV,uint16_t address)
+{
+	uint16_t Rx_Data = (((address & 0x7F)<<11)|0x8000);
+
+	uint8_t RX_DATA_8BIT[2];
+	RX_DATA_8BIT[0]=(uint8_t)((Rx_Data>>8) & 0xFF); // Higher 8 bits
+
+	RX_DATA_8BIT[1]=(uint8_t)(Rx_Data & 0xFF);// Lower 8 bits
+
+
+    // Select DRV8301 (NSS low)
+    DRV->Agonistic_HardwareInterface_t.GPIO_RESET_AG(4, 0);
+
+    // Transmit the 8-bit array
+    DRV->Agonistic_HardwareInterface_t.SPI_AG_TransmitReceive(0,RX_DATA_8BIT, 2, TimeOut);
+
+    // Deselect DRV8301 (NSS high)
+    DRV->Agonistic_HardwareInterface_t.GPIO_SET_AG(4, 1);
+}
+
