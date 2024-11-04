@@ -40,7 +40,7 @@ int main(void)
 	MX_SPI1_Init();
 
 	/* Variables to store DRV8301 communication data */
-	uint16_t readData = 0;
+	uint16_t readData ;
 
 
 	//DRV.Agonistic_HardwareInterface_t.GPIO_AGHW=GPIO_AGHW_WritePin;
