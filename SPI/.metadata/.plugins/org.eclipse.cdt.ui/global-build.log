@@ -5103,3 +5103,86 @@ Finished building: SPI_DRV8301.list
 Finished building: SPI_DRV8301.bin
  
  
+11:05:18 **** Incremental Build of configuration Debug for project SPI_DRV8301 ****
+make -j16 all 
+arm-none-eabi-gcc "../Drivers/Device_Drivers/DRV8301/DRV8301.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F103x6 -DDEBUG -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/Device_Drivers/DRV8301/DRV8301.d" -MT"Drivers/Device_Drivers/DRV8301/DRV8301.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/Device_Drivers/DRV8301/DRV8301.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F103x6 -DDEBUG -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/stm32f1xx_hal_msp.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F103x6 -DDEBUG -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/stm32f1xx_hal_msp.d" -MT"Core/Src/stm32f1xx_hal_msp.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/stm32f1xx_hal_msp.o"
+arm-none-eabi-gcc "../Core/Src/stm32f1xx_it.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F103x6 -DDEBUG -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/stm32f1xx_it.d" -MT"Core/Src/stm32f1xx_it.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/stm32f1xx_it.o"
+../Drivers/Device_Drivers/DRV8301/DRV8301.c: In function 'DRV8301_Write':
+../Drivers/Device_Drivers/DRV8301/DRV8301.c:18:9: error: 'drv8301_t {aka struct <anonymous>}' has no member named 'uint16_t'
+      DRV->
+         ^~
+../Drivers/Device_Drivers/DRV8301/DRV8301.c:20:14: error: expected ';' before 'Tx_Data'
+     uint16_t Tx_Data = (((DRV->address) & 0x7F) << 11) | (data & 0x07FF);
+              ^~~~~~~
+../Drivers/Device_Drivers/DRV8301/DRV8301.c:24:34: error: 'Tx_Data' undeclared (first use in this function)
+     Tx_Data_8bit[0] = (uint8_t)((Tx_Data >> 8) & 0xFF); // Higher 8 bits
+                                  ^~~~~~~
+../Drivers/Device_Drivers/DRV8301/DRV8301.c:24:34: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Drivers/Device_Drivers/DRV8301/subdir.mk:18: Drivers/Device_Drivers/DRV8301/DRV8301.o] Error 1
+make: *** Waiting for unfinished jobs....
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:43:11: warning: variable 'readData' set but not used [-Wunused-but-set-variable]
+  uint16_t readData = 0;
+           ^~~~~~~~
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+11:07:21 **** Incremental Build of configuration Debug for project SPI_DRV8301 ****
+make -j16 all 
+arm-none-eabi-gcc "../Drivers/Device_Drivers/DRV8301/DRV8301.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F103x6 -DDEBUG -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/Device_Drivers/DRV8301/DRV8301.d" -MT"Drivers/Device_Drivers/DRV8301/DRV8301.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/Device_Drivers/DRV8301/DRV8301.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F103x6 -DDEBUG -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/stm32f1xx_hal_msp.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F103x6 -DDEBUG -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/stm32f1xx_hal_msp.d" -MT"Core/Src/stm32f1xx_hal_msp.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/stm32f1xx_hal_msp.o"
+arm-none-eabi-gcc "../Core/Src/stm32f1xx_it.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F103x6 -DDEBUG -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/stm32f1xx_it.d" -MT"Core/Src/stm32f1xx_it.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/stm32f1xx_it.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:43:11: warning: variable 'readData' set but not used [-Wunused-but-set-variable]
+  uint16_t readData = 0;
+           ^~~~~~~~
+arm-none-eabi-gcc -o "SPI_DRV8301.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\Users\MARIO\OneDrive\Desktop\Graduation\SPI\SPI_DRV8301\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SPI_DRV8301.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SPI_DRV8301.elf
+ 
+arm-none-eabi-objdump -h -S  SPI_DRV8301.elf  > "SPI_DRV8301.list"
+arm-none-eabi-objcopy  -O binary  SPI_DRV8301.elf  "SPI_DRV8301.bin"
+arm-none-eabi-size   SPI_DRV8301.elf 
+   text	   data	    bss	    dec	    hex	filename
+   7984	     48	   1672	   9704	   25e8	SPI_DRV8301.elf
+Finished building: default.size.stdout
+ 
+Finished building: SPI_DRV8301.list
+Finished building: SPI_DRV8301.bin
+ 
+ 
+11:14:28 **** Incremental Build of configuration Debug for project SPI_DRV8301 ****
+make -j16 all 
+arm-none-eabi-gcc "../Drivers/Device_Drivers/DRV8301/DRV8301.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F103x6 -DDEBUG -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/Device_Drivers/DRV8301/DRV8301.d" -MT"Drivers/Device_Drivers/DRV8301/DRV8301.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/Device_Drivers/DRV8301/DRV8301.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F103x6 -DDEBUG -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/stm32f1xx_hal_msp.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F103x6 -DDEBUG -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/stm32f1xx_hal_msp.d" -MT"Core/Src/stm32f1xx_hal_msp.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/stm32f1xx_hal_msp.o"
+arm-none-eabi-gcc "../Core/Src/stm32f1xx_it.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F103x6 -DDEBUG -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/stm32f1xx_it.d" -MT"Core/Src/stm32f1xx_it.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/stm32f1xx_it.o"
+../Drivers/Device_Drivers/DRV8301/DRV8301.c: In function 'DRV8301_Read':
+../Drivers/Device_Drivers/DRV8301/DRV8301.c:43:31: error: 'address' undeclared (first use in this function)
+     uint16_t Read_Command = ((address & 0x7F) << 11) | 0x8000;
+                               ^~~~~~~
+../Drivers/Device_Drivers/DRV8301/DRV8301.c:43:31: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Drivers/Device_Drivers/DRV8301/subdir.mk:18: Drivers/Device_Drivers/DRV8301/DRV8301.o] Error 1
+make: *** Waiting for unfinished jobs....
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:43:11: warning: variable 'readData' set but not used [-Wunused-but-set-variable]
+  uint16_t readData = 0;
+           ^~~~~~~~
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+11:14:47 **** Incremental Build of configuration Debug for project SPI_DRV8301 ****
+make -j16 all 
+arm-none-eabi-gcc "../Drivers/Device_Drivers/DRV8301/DRV8301.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F103x6 -DDEBUG -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/Device_Drivers/DRV8301/DRV8301.d" -MT"Drivers/Device_Drivers/DRV8301/DRV8301.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Drivers/Device_Drivers/DRV8301/DRV8301.o"
+arm-none-eabi-gcc -o "SPI_DRV8301.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\Users\MARIO\OneDrive\Desktop\Graduation\SPI\SPI_DRV8301\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SPI_DRV8301.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SPI_DRV8301.elf
+ 
+arm-none-eabi-objdump -h -S  SPI_DRV8301.elf  > "SPI_DRV8301.list"
+arm-none-eabi-objcopy  -O binary  SPI_DRV8301.elf  "SPI_DRV8301.bin"
+arm-none-eabi-size   SPI_DRV8301.elf 
+   text	   data	    bss	    dec	    hex	filename
+   7968	     48	   1672	   9688	   25d8	SPI_DRV8301.elf
+Finished building: default.size.stdout
+ 
+Finished building: SPI_DRV8301.list
+Finished building: SPI_DRV8301.bin
+ 
+ 

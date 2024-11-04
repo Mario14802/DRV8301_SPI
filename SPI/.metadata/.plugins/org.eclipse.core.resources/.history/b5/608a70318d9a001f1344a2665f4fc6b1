@@ -57,7 +57,7 @@ typedef struct  {
 
 }drv8301_t;
 
-void DRV8301_Write(drv8301_t *DRV);
-void  DRV8301_Read(drv8301_t *DRV);
+void DRV8301_Write(drv8301_t *DRV, uint16_t address, uint16_t data);
+uint16_t  DRV8301_Read(drv8301_t *DRV,uint16_t address);
 
 #endif /* DEVICE_DRIVERS_DRV8301_DRV8301_H_ */

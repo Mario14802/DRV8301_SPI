@@ -1,2 +1,2 @@
-DRV8301.c:10:6:DRV8301_Write	24	static
-DRV8301.c:30:10:DRV8301_Read	40	static
+DRV8301.c:15:6:DRV8301_Write	24	static
+DRV8301.c:37:6:DRV8301_Read	32	static

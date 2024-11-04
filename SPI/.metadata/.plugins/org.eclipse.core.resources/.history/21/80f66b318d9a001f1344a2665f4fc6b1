@@ -41,7 +41,8 @@ int main(void)
 
 	/* Variables to store DRV8301 communication data */
 	uint16_t readData = 0;
-
+	uint16_t writeData = 0x1234;  // Example data to write
+	uint16_t address = 0x03;     // Example register address (check DRV8301 datasheet for valid addresses)
 
 	//DRV.Agonistic_HardwareInterface_t.GPIO_AGHW=GPIO_AGHW_WritePin;
 
@@ -49,12 +50,10 @@ int main(void)
 	while (1)
 	{
 		/* Write data to DRV8301 */
-		DRV8301_Write(&DRV);
+		DRV8301_Write(&DRV, address,  writeData);
 
 		/* Read data from DRV8301 */
-		DRV8301_Read(&DRV);
-
-		readData=DRV.readData;
+		readData = DRV8301_Read(&DRV,address);
 
 		/* Add delay or perform other operations as needed */
 		HAL_Delay(1000);  // 1 second delay
